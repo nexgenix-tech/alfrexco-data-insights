@@ -1,3 +1,5 @@
+import { Database, Users, Building, CreditCard, TrendingUp, Shield } from "lucide-react";
+import DataAnimation from "../components/DataAnimation";
 
 const BigData = () => {
   const stats = [
@@ -26,7 +28,8 @@ const BigData = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20">
+      <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20 relative overflow-hidden">
+        <DataAnimation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <h1 className="text-5xl font-bold mb-6">

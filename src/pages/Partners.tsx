@@ -1,3 +1,4 @@
+import DataAnimation from "../components/DataAnimation";
 
 const Partners = () => {
   const operationalPartners = [
@@ -18,6 +19,7 @@ const Partners = () => {
     },
     {
       name: "Ndende Technologies",
+      logo: "/lovable-uploads/2f7d805b-b622-4c6b-b480-aaaa262f3186.png",
       type: "Biometrics / Security Company",
       description: "Comprehensive security and biometric solutions provider."
     }
@@ -26,7 +28,8 @@ const Partners = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20">
+      <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20 relative overflow-hidden">
+        <DataAnimation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <h1 className="text-5xl font-bold mb-6">
