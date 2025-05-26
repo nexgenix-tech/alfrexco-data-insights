@@ -1,3 +1,5 @@
+
+import { Shield, Users, Database, CheckCircle, Phone, Mail, MapPin } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
 
 const Partners = () => {
@@ -19,7 +21,7 @@ const Partners = () => {
     },
     {
       name: "Ndende Technologies",
-      logo: "/lovable-uploads/2f7d805b-b622-4c6b-b480-aaaa262f3186.png",
+      logo: "/lovable-uploads/85a5f017-8c94-4896-8cb2-5a0eb991c676.png",
       type: "Biometrics / Security Company",
       description: "Comprehensive security and biometric solutions provider."
     }
@@ -91,11 +93,13 @@ const Partners = () => {
               <div key={index} className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
                 {partner.logo && (
                   <div className="mb-6">
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name}
-                      className="h-16 w-auto"
-                    />
+                    <div className={`inline-block p-4 rounded-lg ${partner.name === 'Ndende Technologies' ? 'bg-gray-100' : ''}`}>
+                      <img 
+                        src={partner.logo} 
+                        alt={partner.name}
+                        className="h-16 w-auto"
+                      />
+                    </div>
                   </div>
                 )}
                 <h3 className="text-2xl font-semibold text-[#1A1A1A] mb-2">{partner.name}</h3>
@@ -120,7 +124,7 @@ const Partners = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">🔧</span>
+                <Database className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold mb-4">Advanced Technology</h3>
               <p className="text-orange-100">
@@ -131,7 +135,7 @@ const Partners = () => {
 
             <div className="text-center">
               <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">🔒</span>
+                <Shield className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold mb-4">Enhanced Security</h3>
               <p className="text-orange-100">
@@ -142,7 +146,7 @@ const Partners = () => {
 
             <div className="text-center">
               <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">📊</span>
+                <CheckCircle className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold mb-4">Comprehensive Solutions</h3>
               <p className="text-orange-100">

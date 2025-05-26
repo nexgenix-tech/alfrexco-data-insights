@@ -1,5 +1,6 @@
+
 import { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
 
 const Contact = () => {
@@ -168,7 +169,7 @@ const Contact = () => {
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-[#F37021] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-xl">📞</span>
+                    <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#1A1A1A] mb-1">Phone</h3>
@@ -178,7 +179,7 @@ const Contact = () => {
 
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-[#F37021] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-xl">✉️</span>
+                    <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#1A1A1A] mb-1">Email</h3>
@@ -188,7 +189,7 @@ const Contact = () => {
 
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-[#F37021] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-xl">📍</span>
+                    <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#1A1A1A] mb-1">Address</h3>
@@ -204,7 +205,7 @@ const Contact = () => {
               {/* Map Placeholder */}
               <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
                 <div className="text-center text-gray-500">
-                  <span className="text-4xl mb-2 block">🗺️</span>
+                  <MapPin className="w-12 h-12 mx-auto mb-2" />
                   <p>Interactive Map</p>
                   <p className="text-sm">Monument Office Park, Pretoria</p>
                 </div>
@@ -221,14 +222,17 @@ const Contact = () => {
             <h2 className="text-3xl font-bold text-[#1A1A1A] mb-8">Business Hours</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white rounded-lg p-6 shadow-sm">
+                <Clock className="w-8 h-8 text-[#F37021] mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">Weekdays</h3>
                 <p className="text-gray-600">Monday - Friday<br />8:00 AM - 5:00 PM</p>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-sm">
+                <Clock className="w-8 h-8 text-[#F37021] mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">Saturday</h3>
                 <p className="text-gray-600">9:00 AM - 1:00 PM</p>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-sm">
+                <Clock className="w-8 h-8 text-[#F37021] mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">Sunday</h3>
                 <p className="text-gray-600">Closed</p>
               </div>

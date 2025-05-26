@@ -11,7 +11,6 @@ const Services = () => {
       title: "Identity & Verification Services",
       description: "Comprehensive identity verification solutions to ensure secure and reliable customer onboarding.",
       icon: Shield,
-      color: "from-blue-500 to-blue-600",
       items: [
         {
           name: "ID Verification",
@@ -39,7 +38,6 @@ const Services = () => {
       title: "Data Enrichment Services",
       description: "Enhance your existing customer data with our comprehensive databases.",
       icon: Database,
-      color: "from-green-500 to-green-600",
       items: [
         {
           name: "Personal Information Enrichment",
@@ -72,7 +70,6 @@ const Services = () => {
       title: "KYC Analysis",
       description: "Advanced analytics to understand customer behavior and risk profiles.",
       icon: Search,
-      color: "from-purple-500 to-purple-600",
       items: [
         {
           name: "Customer Profiling",
@@ -100,7 +97,6 @@ const Services = () => {
       title: "Trust & Deeds Data",
       description: "Access comprehensive property and trust information databases.",
       icon: Building2,
-      color: "from-orange-500 to-orange-600",
       items: [
         {
           name: "Trust Information",
@@ -147,7 +143,7 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services Navigation Cards */}
+      {/* Services Navigation */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -155,7 +151,8 @@ const Services = () => {
             <p className="text-xl text-gray-600">Choose a service category to explore our solutions</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {/* Mobile-friendly service tabs */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
             {Object.entries(services).map(([key, service]) => {
               const IconComponent = service.icon;
               const isActive = activeTab === key;
@@ -163,26 +160,29 @@ const Services = () => {
                 <button
                   key={key}
                   onClick={() => setActiveTab(key)}
-                  className={`group relative p-8 rounded-xl transition-all duration-300 transform hover:scale-105 ${
+                  className={`p-6 rounded-xl transition-all duration-300 text-left ${
                     isActive 
-                      ? 'bg-white shadow-2xl border-2 border-[#F37021]' 
-                      : 'bg-white shadow-md hover:shadow-xl border-2 border-transparent'
+                      ? 'bg-[#F37021] text-white shadow-lg' 
+                      : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
                   }`}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-xl`}></div>
-                  <div className="relative z-10">
-                    <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center transition-colors duration-300 ${
-                      isActive ? 'bg-[#F37021] text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-[#F37021] group-hover:text-white'
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                      isActive ? 'bg-white bg-opacity-20' : 'bg-gray-100'
                     }`}>
-                      <IconComponent size={28} />
+                      <IconComponent size={20} className={isActive ? 'text-white' : 'text-[#F37021]'} />
                     </div>
-                    <h3 className={`text-lg font-bold mb-2 transition-colors duration-300 ${
-                      isActive ? 'text-[#F37021]' : 'text-[#1A1A1A] group-hover:text-[#F37021]'
+                    <h3 className={`font-bold text-sm sm:text-base ${
+                      isActive ? 'text-white' : 'text-[#1A1A1A]'
                     }`}>
                       {service.title.split(' ')[0]} {service.title.split(' ')[1]}
                     </h3>
-                    <p className="text-sm text-gray-600">{service.description}</p>
                   </div>
+                  <p className={`text-xs sm:text-sm ${
+                    isActive ? 'text-orange-100' : 'text-gray-600'
+                  }`}>
+                    {service.description}
+                  </p>
                 </button>
               );
             })}
@@ -190,31 +190,31 @@ const Services = () => {
 
           {/* Active Service Details */}
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div className={`bg-gradient-to-r ${activeService.color} p-8 text-white`}>
+            <div className="bg-[#1A1A1A] p-8 text-white">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                <div className="w-12 h-12 bg-[#F37021] rounded-full flex items-center justify-center mr-4">
                   <ActiveIcon size={24} />
                 </div>
-                <h2 className="text-3xl font-bold">{activeService.title}</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold">{activeService.title}</h2>
               </div>
-              <p className="text-xl opacity-90">{activeService.description}</p>
+              <p className="text-lg sm:text-xl text-gray-300">{activeService.description}</p>
             </div>
 
             <div className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {activeService.items.map((item, index) => {
                   const ItemIcon = item.icon;
                   return (
                     <div key={index} className="group p-6 rounded-xl bg-gray-50 hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-[#F37021]">
                       <div className="flex items-start space-x-4">
-                        <div className="w-10 h-10 bg-[#F37021] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-[#F37021] group-hover:bg-opacity-100 transition-all duration-300">
+                        <div className="w-10 h-10 bg-[#F37021] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-[#F37021] transition-all duration-300">
                           <ItemIcon size={20} className="text-[#F37021] group-hover:text-white transition-colors duration-300" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2 group-hover:text-[#F37021] transition-colors duration-300">
+                          <h3 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2 group-hover:text-[#F37021] transition-colors duration-300">
                             {item.name}
                           </h3>
-                          <p className="text-gray-600">{item.description}</p>
+                          <p className="text-sm sm:text-base text-gray-600">{item.description}</p>
                         </div>
                       </div>
                     </div>
@@ -237,7 +237,7 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { name: "Financial Sector", description: "Banks, Financial Services, Insurers", icon: Building2 },
               { name: "Public Sector", description: "Government, Municipalities", icon: Shield },
