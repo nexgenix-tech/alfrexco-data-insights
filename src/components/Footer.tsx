@@ -11,7 +11,7 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/4cd33516-ac28-48b2-a6b6-960f47832266.png" 
               alt="Alfrexco" 
-              className="h-8 w-auto mb-4 filter brightness-0 invert"
+              className="h-10 w-auto mb-4 filter brightness-0 invert"
             />
             <p className="text-gray-300 mb-4 max-w-md">
               Leading South African data and identity verification company providing 

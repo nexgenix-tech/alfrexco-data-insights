@@ -12,6 +12,7 @@ const Partners = () => {
   const strategicPartners = [
     {
       name: "Tech 5",
+      logo: "/lovable-uploads/a71b2e11-5e3f-43bf-a356-268b0782e1f9.png",
       type: "Biometrics / ID Management Company", 
       description: "Advanced biometric identification and management technologies."
     },
@@ -85,6 +86,15 @@ const Partners = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {strategicPartners.map((partner, index) => (
               <div key={index} className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                {partner.logo && (
+                  <div className="mb-6">
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name}
+                      className="h-16 w-auto"
+                    />
+                  </div>
+                )}
                 <h3 className="text-2xl font-semibold text-[#1A1A1A] mb-2">{partner.name}</h3>
                 <p className="text-[#F37021] font-medium mb-4">{partner.type}</p>
                 <p className="text-gray-600">{partner.description}</p>

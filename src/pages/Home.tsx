@@ -1,12 +1,15 @@
 
 import { Link } from "react-router-dom";
+import { User, BarChart3, Building, Search } from "lucide-react";
+import DataAnimation from "../components/DataAnimation";
 
 const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20 relative overflow-hidden">
+        <DataAnimation />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -65,37 +68,43 @@ const Home = () => {
               {
                 title: "Identity Verification",
                 description: "Comprehensive ID verification, spousal verification, and photo verification services.",
-                icon: "👤"
+                icon: User
               },
               {
                 title: "Data Enrichment",
                 description: "Enhance your existing data with our latest consumer and commercial records.",
-                icon: "📊"
+                icon: BarChart3
               },
               {
                 title: "Trust Data",
                 description: "Access to over 250,000 trust information records from the Masters office.",
-                icon: "🏛️"
+                icon: Building
               },
               {
                 title: "KYC Analysis",
                 description: "Sophisticated data analytics to understand customer profiles and behavior.",
-                icon: "🔍"
+                icon: Search
               }
-            ].map((service, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold text-[#1A1A1A] mb-3">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
-              </div>
-            ))}
+            ].map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-[#F37021] mb-4">
+                    <IconComponent size={40} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-[#1A1A1A] mb-3">{service.title}</h3>
+                  <p className="text-gray-600">{service.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-[#F37021]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-[#F37021] relative overflow-hidden">
+        <DataAnimation />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
               Massive Data Coverage
