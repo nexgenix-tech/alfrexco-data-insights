@@ -9,34 +9,44 @@ const Services = () => {
 
   const services = {
     identity: {
-      title: "Identity & Verification Services",
-      description: "Comprehensive identity verification solutions to ensure secure and reliable customer onboarding.",
+      title: "Identity Verification",
+      description: "Comprehensive identity verification solutions using live photo verification against official databases to ensure secure and reliable customer onboarding.",
       icon: Shield,
       items: [
         {
           name: "ID Verification",
-          description: "Verify South African identity documents against official databases.",
+          description: "Verify South African identity documents against official databases with live photo matching against Home Affairs and other systems.",
           icon: FileText
         },
         {
-          name: "Spousal Verification", 
-          description: "Confirm marital status and spousal relationships.",
+          name: "Live Photo Verification", 
+          description: "Real-time facial recognition comparing live photos against database photos from Home Affairs and other official systems.",
           icon: Users
         },
         {
-          name: "ID Photo Verification",
-          description: "Facial recognition and photo matching services.",
+          name: "Data Linkages",
+          description: "Pull comprehensive data linkages and cross-reference information across multiple official databases.",
           icon: CheckCircle
         },
         {
-          name: "Fingerprint Verification",
-          description: "Biometric verification using fingerprint technology.",
+          name: "NIIS Integration",
+          description: "Access and verify data from the National Immigration Information System (NIIS) for comprehensive identity checks.",
           icon: Shield
+        },
+        {
+          name: "Spousal Verification", 
+          description: "Confirm marital status and spousal relationships through official records.",
+          icon: Users
+        },
+        {
+          name: "Fingerprint Verification",
+          description: "Biometric verification using advanced fingerprint technology for enhanced security.",
+          icon: Lock
         }
       ]
     },
     data: {
-      title: "Data Enrichment Services",
+      title: "Data Enrichment",
       description: "Enhance your existing customer data with our comprehensive databases.",
       icon: Database,
       items: [
@@ -168,7 +178,7 @@ const Services = () => {
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20 relative overflow-hidden">
+        <section className="bg-gradient-to-br from-[#2A2A2A] to-gray-700 text-white py-20 relative overflow-hidden">
           <DataAnimation />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl">
@@ -200,25 +210,25 @@ const Services = () => {
                   <button
                     key={key}
                     onClick={() => setActiveTab(key)}
-                    className={`p-6 rounded-xl transition-all duration-300 text-left ${
+                    className={`p-4 rounded-xl transition-all duration-300 text-left min-h-[120px] ${
                       isActive 
                         ? 'bg-[#F37021] text-white shadow-lg' 
                         : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
                     }`}
                   >
                     <div className="flex items-center space-x-3 mb-3">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                         isActive ? 'bg-white bg-opacity-20' : 'bg-gray-100'
                       }`}>
                         <IconComponent size={20} className={isActive ? 'text-white' : 'text-[#F37021]'} />
                       </div>
-                      <h3 className={`font-bold text-sm sm:text-base ${
+                      <h3 className={`font-bold text-sm leading-tight ${
                         isActive ? 'text-white' : 'text-[#1A1A1A]'
                       }`}>
-                        {service.title.split(' ')[0]} {service.title.split(' ')[1]}
+                        {service.title}
                       </h3>
                     </div>
-                    <p className={`text-xs sm:text-sm ${
+                    <p className={`text-xs leading-relaxed ${
                       isActive ? 'text-orange-100' : 'text-gray-600'
                     }`}>
                       {service.description}

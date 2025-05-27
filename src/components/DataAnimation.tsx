@@ -38,7 +38,7 @@ const DataAnimation = () => {
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
           size: Math.random() * 3 + 1,
-          opacity: Math.random() * 0.3 + 0.1
+          opacity: Math.random() * 0.5 + 0.2
         });
       }
     };
@@ -69,7 +69,7 @@ const DataAnimation = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 100) {
-            const opacity = (100 - distance) / 100 * 0.2;
+            const opacity = (100 - distance) / 100 * 0.4;
             ctx.beginPath();
             ctx.moveTo(point.x, point.y);
             ctx.lineTo(otherPoint.x, otherPoint.y);
@@ -82,7 +82,7 @@ const DataAnimation = () => {
       
       // Draw floating data elements
       ctx.font = '12px Inter';
-      ctx.fillStyle = 'rgba(243, 112, 33, 0.1)';
+      ctx.fillStyle = 'rgba(243, 112, 33, 0.3)';
       
       const dataTexts = ['ID: 123456', 'VERIFIED', 'DATA SYNC', '99.9%', 'SECURE'];
       dataTexts.forEach((text, i) => {

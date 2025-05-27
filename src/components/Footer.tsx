@@ -22,7 +22,7 @@ const Footer = () => {
                 <span className="font-medium">Phone:</span> +27 10 023 0576
               </p>
               <p className="text-sm text-gray-300">
-                <span className="font-medium">Email:</span> info@alfrexco.com
+                <span className="font-medium">Email:</span> info@alfrexcosa.co.za
               </p>
               <p className="text-sm text-gray-300">
                 <span className="font-medium">Address:</span> Suite 205, Block 2<br />

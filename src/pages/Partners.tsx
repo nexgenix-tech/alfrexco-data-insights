@@ -1,4 +1,3 @@
-
 import { Shield, Users, Database, CheckCircle, Phone, Mail, MapPin } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
 import { Helmet } from "react-helmet-async";
@@ -6,10 +5,10 @@ import { Helmet } from "react-helmet-async";
 const Partners = () => {
   const operationalPartners = [
     {
-      name: "Daon",
-      logo: "/lovable-uploads/801cf25b-f91a-41f3-9eea-9cc39e194175.png",
-      type: "Identity Platform",
-      description: "Leading identity verification and biometric authentication solutions."
+      name: "Ideco",
+      logo: "/lovable-uploads/a2ca51c7-0054-4e29-bf3c-f05172a8337a.png",
+      type: "Smart Identification Platform",
+      description: "Leading smart identification and verification solutions provider."
     }
   ];
 
@@ -32,7 +31,7 @@ const Partners = () => {
     <>
       <Helmet>
         <title>Our Partners - Alfrexco SA</title>
-        <meta name="description" content="Discover Alfrexco SA's strategic and operational partners. Working together with industry leaders like Daon, Tech 5, and Ndende Technologies to bring you quality data solutions." />
+        <meta name="description" content="Discover Alfrexco SA's strategic and operational partners. Working together with industry leaders like Ideco, Tech 5, and Ndende Technologies to bring you quality data solutions." />
         <meta name="keywords" content="Alfrexco SA partners, strategic partnerships, data verification partners, biometric solutions, identity verification" />
         <meta property="og:title" content="Our Partners - Alfrexco SA" />
         <meta property="og:description" content="Working together with industry leaders to bring you quality, tailor-made data solutions through strategic partnerships." />
@@ -43,7 +42,7 @@ const Partners = () => {
       
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20 relative overflow-hidden">
+        <section className="bg-gradient-to-br from-[#2A2A2A] to-gray-700 text-white py-20 relative overflow-hidden">
           <DataAnimation />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl">
