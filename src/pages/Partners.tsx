@@ -1,3 +1,4 @@
+
 import { Shield, Users, Database, CheckCircle, Phone, Mail, MapPin } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
 import { Helmet } from "react-helmet-async";
@@ -21,7 +22,7 @@ const Partners = () => {
     },
     {
       name: "Ndende Technologies",
-      logo: "/lovable-uploads/133b4a04-869c-40f4-9a5b-374b5c971dde.png",
+      logo: "/lovable-uploads/abb278b3-f8d1-4372-b518-3fd2bc88b3ec.png",
       type: "Biometrics / Security Company",
       description: "Comprehensive security and biometric solutions provider."
     }
@@ -30,13 +31,13 @@ const Partners = () => {
   return (
     <>
       <Helmet>
-        <title>Our Partners - Alfrexco</title>
-        <meta name="description" content="Discover Alfrexco's strategic and operational partners. Working together with industry leaders like Daon, Tech 5, and Ndende Technologies to bring you quality data solutions." />
-        <meta name="keywords" content="Alfrexco partners, strategic partnerships, data verification partners, biometric solutions, identity verification" />
-        <meta property="og:title" content="Our Partners - Alfrexco" />
+        <title>Our Partners - Alfrexco SA</title>
+        <meta name="description" content="Discover Alfrexco SA's strategic and operational partners. Working together with industry leaders like Daon, Tech 5, and Ndende Technologies to bring you quality data solutions." />
+        <meta name="keywords" content="Alfrexco SA partners, strategic partnerships, data verification partners, biometric solutions, identity verification" />
+        <meta property="og:title" content="Our Partners - Alfrexco SA" />
         <meta property="og:description" content="Working together with industry leaders to bring you quality, tailor-made data solutions through strategic partnerships." />
         <meta property="og:type" content="website" />
-        <meta name="twitter:title" content="Our Partners - Alfrexco" />
+        <meta name="twitter:title" content="Our Partners - Alfrexco SA" />
         <meta name="twitter:description" content="Working together with industry leaders to bring you quality, tailor-made data solutions through strategic partnerships." />
       </Helmet>
       
