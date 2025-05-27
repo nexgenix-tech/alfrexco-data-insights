@@ -70,10 +70,10 @@ const Footer = () => {
             © 2025 Alfrexco SA. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="#" className="text-gray-400 hover:text-[#F37021] text-sm transition-colors">
+            <Link to="/privacy-policy" className="text-gray-400 hover:text-[#F37021] text-sm transition-colors">
               Privacy Policy
             </Link>
-            <Link to="#" className="text-gray-400 hover:text-[#F37021] text-sm transition-colors">
+            <Link to="/terms-of-service" className="text-gray-400 hover:text-[#F37021] text-sm transition-colors">
               Terms of Service
             </Link>
           </div>
