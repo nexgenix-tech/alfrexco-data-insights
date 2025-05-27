@@ -193,7 +193,7 @@ const TermsOfService = () => {
                 <p><strong>Address:</strong> Suite 205, Block 2, Monument Office Park, 79 Steenbok Avenue, Pretoria</p>
               </div>
             </div>
-          </div>
+          </section>
 
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-[#1A1A1A] mb-4">13. Changes to Terms</h2>
