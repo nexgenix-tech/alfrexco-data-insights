@@ -1,7 +1,54 @@
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
+  const { toast } = useToast();
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setIsSubmitting(true);
+
+    try {
+      // Add to Brevo newsletter list (Alfrexco Newsletter - List ID #6)
+      const response = await fetch('https://api.brevo.com/v3/contacts', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'api-key': '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',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          listIds: [6] // Alfrexco Newsletter list
+        })
+      });
+
+      console.log('Newsletter subscription:', response.ok);
+
+      toast({
+        title: "Successfully Subscribed!",
+        description: "Thank you for subscribing to our newsletter.",
+      });
+
+      setEmail("");
+    } catch (error) {
+      console.error('Error subscribing to newsletter:', error);
+      toast({
+        title: "Error",
+        description: "There was an error subscribing. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="bg-[#1A1A1A] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -11,7 +58,8 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/4cd33516-ac28-48b2-a6b6-960f47832266.png" 
               alt="Alfrexco SA" 
-              className="h-10 w-auto mb-4 filter brightness-0 invert"
+              className="h-10 w-auto mb-4"
+              style={{ filter: 'brightness(0) invert(1)' }}
             />
             <p className="text-gray-300 mb-4 max-w-md">
               Leading South African data and identity verification company providing 
@@ -49,17 +97,21 @@ const Footer = () => {
             <p className="text-gray-300 text-sm mb-4">
               Subscribe to our newsletter for the latest industry insights.
             </p>
-            <form className="space-y-3">
+            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
               <input
                 type="email"
                 placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-[#F37021]"
               />
               <button
                 type="submit"
-                className="w-full bg-[#F37021] text-white px-4 py-2 rounded-md hover:bg-[#E5651C] transition-colors duration-200"
+                disabled={isSubmitting}
+                className="w-full bg-[#F37021] text-white px-4 py-2 rounded-md hover:bg-[#E5651C] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Subscribe
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </button>
             </form>
           </div>

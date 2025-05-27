@@ -1,9 +1,12 @@
+
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
 import { Helmet } from "react-helmet-async";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,12 +15,91 @@ const Contact = () => {
     message: "",
     requestAppointment: false
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Here you would typically send the data to your backend or form service
-    alert("Thank you for your message. We'll get back to you soon!");
+    setIsSubmitting(true);
+
+    try {
+      // Add contact to Brevo list (Alfrexco Leads - List ID #7)
+      const contactResponse = await fetch('https://api.brevo.com/v3/contacts', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'api-key': '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',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          attributes: {
+            FIRSTNAME: formData.name,
+            COMPANY: formData.company,
+            SMS: formData.phone
+          },
+          listIds: [7] // Alfrexco Leads list
+        })
+      });
+
+      // Send email notification using Brevo SMTP
+      const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'api-key': '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',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          sender: {
+            name: 'Alfrexco Website',
+            email: '870a85001@smtp-brevo.com'
+          },
+          to: [{
+            email: 'info@alfrexcosa.co.za',
+            name: 'Alfrexco Team'
+          }],
+          subject: 'New Contact Form Submission',
+          htmlContent: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Company:</strong> ${formData.company || 'Not provided'}</p>
+            <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
+            <p><strong>Request Appointment:</strong> ${formData.requestAppointment ? 'Yes' : 'No'}</p>
+            <p><strong>Message:</strong></p>
+            <p>${formData.message}</p>
+          `
+        })
+      });
+
+      console.log('Contact added to Brevo:', contactResponse.ok);
+      console.log('Email sent:', emailResponse.ok);
+
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for your message. We'll get back to you soon!",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        message: "",
+        requestAppointment: false
+      });
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "There was an error sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -42,10 +124,11 @@ const Contact = () => {
       </Helmet>
 
       <div className="min-h-screen bg-white">
-        {/* Hero Section */}
+        {/* Hero Section with increased opacity */}
         <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
           <DataAnimation />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl">
               <h1 className="text-5xl font-bold mb-6">
                 Contact <span className="text-[#F37021]">Us</span>
@@ -159,9 +242,10 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    className="w-full bg-[#F37021] text-white px-6 py-3 rounded-md font-medium hover:bg-[#E5651C] transition-colors duration-200"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#F37021] text-white px-6 py-3 rounded-md font-medium hover:bg-[#E5651C] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               </div>
@@ -195,7 +279,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-[#1A1A1A] mb-1">Email</h3>
-                      <p className="text-gray-600">info@alfrexco.com</p>
+                      <p className="text-gray-600">info@alfrexcosa.co.za</p>
                     </div>
                   </div>
 
