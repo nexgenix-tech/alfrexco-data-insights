@@ -58,8 +58,8 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/alfrexco_mini.png" 
               alt="Alfrexco SA" 
-              className="h-24 w-auto mb-4"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              className="h-16 w-auto mb-4"
+              
             />
             <p className="text-gray-300 mb-4 max-w-md">
               Leading South African data and identity verification company providing 
