@@ -56,7 +56,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="md:col-span-2">
             <img 
-              src="/lovable-uploads/4cd33516-ac28-48b2-a6b6-960f47832266.png" 
+              src="/lovable-uploads/alfrexco_mini.png" 
               alt="Alfrexco SA" 
               className="h-10 w-auto mb-4"
               style={{ filter: 'brightness(0) invert(1)' }}

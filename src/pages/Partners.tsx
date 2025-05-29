@@ -9,6 +9,12 @@ const Partners = () => {
       logo: "/lovable-uploads/a2ca51c7-0054-4e29-bf3c-f05172a8337a.png",
       type: "Smart Identification Platform",
       description: "Leading smart identification and verification solutions provider."
+    },
+    {
+      name: "Uqudo",
+      logo: "/lovable-uploads/uqudo.png",
+      type: "Smart Identification Platform",
+      description: "Leading smart identification and verification solutions provider."
     }
   ];
 
