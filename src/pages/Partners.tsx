@@ -13,8 +13,8 @@ const Partners = () => {
     {
       name: "Uqudo",
       logo: "/lovable-uploads/uqudo.png",
-      type: "Smart Identification Platform",
-      description: "Leading smart identification and verification solutions provider."
+      type: "Smart Digital Onboarding Platform",
+      description: "Innovative digital identity company in the Middle East and Africa."
     }
   ];
 
