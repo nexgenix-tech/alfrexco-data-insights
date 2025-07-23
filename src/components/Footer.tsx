@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { SocialIcon } from 'react-social-icons';
 import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
@@ -87,6 +88,9 @@ const Footer = () => {
               <li><Link to="/services" className="text-gray-300 hover:text-[#F37021] transition-colors">Services</Link></li>
               <li><Link to="/big-data" className="text-gray-300 hover:text-[#F37021] transition-colors">Big Data Records</Link></li>
               <li><Link to="/partners" className="text-gray-300 hover:text-[#F37021] transition-colors">Partners</Link></li>
+              <li><Link to="/csi" className="text-gray-300 hover:text-[#F37021] transition-colors">CSI</Link></li>
+              <li><Link to="/insights" className="text-gray-300 hover:text-[#F37021] transition-colors">Insights</Link></li>
+              <li><Link to="/recruitment" className="text-gray-300 hover:text-[#F37021] transition-colors">Recruitment</Link></li>
               <li><Link to="/contact" className="text-gray-300 hover:text-[#F37021] transition-colors">Contact</Link></li>
             </ul>
           </div>
@@ -118,9 +122,19 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © 2025 Alfrexco SA. All rights reserved.
-          </p>
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+            <p className="text-gray-400 text-sm">
+              © 2025 Alfrexco SA. All rights reserved.
+            </p>
+            <div className="flex items-center space-x-4">
+              <span className="text-gray-400 text-sm">Follow us:</span>
+              <SocialIcon
+                url="https://www.linkedin.com/company/alfrexco-pty-ltd/"
+                style={{ height: 32, width: 32 }}
+                className="hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+          </div>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy-policy" className="text-gray-400 hover:text-[#F37021] text-sm transition-colors">
               Privacy Policy

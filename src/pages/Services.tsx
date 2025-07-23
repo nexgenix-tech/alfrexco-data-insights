@@ -1,160 +1,145 @@
 
 import { useState } from "react";
-import { Shield, Database, Building2, Search, CheckCircle, Users, FileText, Lock, Phone, Clock, MapPin } from "lucide-react";
+import { Shield, Database, Building2, Search, CheckCircle, Users, FileText, Lock, Phone, Clock, MapPin, Award } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
 import { Helmet } from "react-helmet-async";
 
 const Services = () => {
-  const [activeTab, setActiveTab] = useState("identity");
+  const [activeTab, setActiveTab] = useState("biometrics");
 
   const services = {
-    identity: {
-      title: "Identity Verification",
-      description: "Comprehensive identity verification solutions using live photo verification against official databases to ensure secure and reliable customer onboarding.",
+    biometrics: {
+      title: "Biometric Data Services",
+      description: "Advanced biometric verification using facial recognition and fingerprint technology for enhanced security and accuracy.",
       icon: Shield,
       items: [
         {
-          name: "ID Verification",
-          description: "Verify South African identity documents against official databases with live photo matching against Home Affairs and other systems.",
-          icon: FileText
-        },
-        {
-          name: "Live Photo Verification", 
+          name: "Facial Recognition",
           description: "Real-time facial recognition comparing live photos against database photos from Home Affairs and other official systems.",
           icon: Users
         },
         {
-          name: "Data Linkages",
-          description: "Pull comprehensive data linkages and cross-reference information across multiple official databases.",
-          icon: CheckCircle
-        },
-        {
-          name: "NIIS Integration",
-          description: "Access and verify data from the National Immigration Information System (NIIS) for comprehensive identity checks.",
-          icon: Shield
-        },
-        {
-          name: "Spousal Verification", 
-          description: "Confirm marital status and spousal relationships through official records.",
-          icon: Users
-        },
-        {
           name: "Fingerprint Verification",
-          description: "Biometric verification using advanced fingerprint technology for enhanced security.",
-          icon: Lock
-        }
-      ]
-    },
-    data: {
-      title: "Data Enrichment",
-      description: "Enhance your existing customer data with our comprehensive databases.",
-      icon: Database,
-      items: [
-        {
-          name: "Personal Information Enrichment",
-          description: "Enhance customer profiles with additional personal data points.",
-          icon: Users
-        },
-        {
-          name: "Business Verification",
-          description: "Verify and enrich business information and registration details.",
-          icon: Building2
-        },
-        {
-          name: "Trust Data Verification",
-          description: "Access trust information from the Masters office database.",
+          description: "Biometric verification using advanced fingerprint technology for enhanced security and identity confirmation.",
           icon: Lock
         },
         {
-          name: "Vehicle Data Verification",
-          description: "Comprehensive vehicle registration and ownership verification.",
+          name: "Live Photo Verification", 
+          description: "Live photo verification against official database records to ensure identity authenticity.",
           icon: CheckCircle
         },
         {
-          name: "Bank Account Verification",
-          description: "Verify banking information and account ownership.",
+          name: "Multi-Modal Biometrics",
+          description: "Combining multiple biometric modalities for comprehensive identity verification solutions.",
           icon: Shield
         }
       ]
     },
-    kyc: {
-      title: "KYC Analysis",
-      description: "Advanced analytics to understand customer behavior and risk profiles.",
-      icon: Search,
+    qualifications: {
+      title: "Qualification Checks",
+      description: "Comprehensive verification of educational qualifications and professional certifications.",
+      icon: FileText,
       items: [
         {
-          name: "Customer Profiling",
-          description: "Build comprehensive customer profiles using data analytics.",
-          icon: Users
+          name: "Educational Verification",
+          description: "Verify academic qualifications and degrees from South African institutions.",
+          icon: FileText
         },
         {
-          name: "Risk Assessment", 
-          description: "Evaluate customer risk levels using multiple data points.",
-          icon: Shield
+          name: "Professional Certifications",
+          description: "Validate professional certifications and licenses from regulatory bodies.",
+          icon: Award
         },
         {
-          name: "Behavioral Analysis",
-          description: "Understand customer spending patterns and preferences.",
-          icon: Search
-        },
-        {
-          name: "Compliance Monitoring",
-          description: "Ongoing monitoring for regulatory compliance requirements.",
+          name: "Skills Assessment",
+          description: "Comprehensive skills and competency verification for employment screening.",
           icon: CheckCircle
+        },
+        {
+          name: "Institution Database Access",
+          description: "Direct access to educational institution databases for real-time verification.",
+          icon: Database
         }
       ]
     },
     tracing: {
-      title: "Unclaimed Benefits Tracing",
-      description: "Expert tracing services to locate individuals with unclaimed benefits, pensions, and financial assets.",
+      title: "Tracing Services",
+      description: "Comprehensive tracing solutions for consumer and commercial applications.",
       icon: Search,
       items: [
         {
-          name: "Desktop/Digital Tracing",
-          description: "Latest search tools and databases combined with telephonic/field tracing network and EKS Management System.",
-          icon: Database
+          name: "Consumer Tracing",
+          description: "Locate individuals for debt recovery, legal matters, and unclaimed benefits.",
+          icon: Users
         },
         {
-          name: "Physical/Field Tracing",
-          description: "Specialized network of field agents for physical tracing, visiting beneficiaries and document signing.",
-          icon: MapPin
-        },
-        {
-          name: "Investigative Tracing",
-          description: "In-depth tracing for untraceable cases, using experienced personnel to locate and verify former members.",
-          icon: Search
-        },
-        {
-          name: "Legal Documentation",
-          description: "Support for signing Section 58's, Section 57's, AOD's, Section 129's and Debit Orders.",
-          icon: FileText
-        }
-      ]
-    },
-    trust: {
-      title: "Trust & Deeds Data",
-      description: "Access comprehensive property and trust information databases.",
-      icon: Building2,
-      items: [
-        {
-          name: "Trust Information",
-          description: "Database of over 250,000 trust records from the Masters office.",
+          name: "Commercial Tracing",
+          description: "Business and corporate entity tracing for compliance and investigation purposes.",
           icon: Building2
         },
         {
-          name: "Property Records",
-          description: "Comprehensive property ownership and registration data.",
+          name: "Skip Tracing",
+          description: "Advanced skip tracing services using multiple data sources and methodologies.",
+          icon: Search
+        },
+        {
+          name: "Asset Tracing",
+          description: "Locate and verify asset ownership for financial and legal proceedings.",
+          icon: Shield
+        }
+      ]
+    },
+    idverification: {
+      title: "ID Verification",
+      description: "Comprehensive identity document verification against official South African databases.",
+      icon: FileText,
+      items: [
+        {
+          name: "ID Document Verification",
+          description: "Verify South African identity documents against Home Affairs databases.",
           icon: FileText
         },
         {
-          name: "Deeds Office Data",
-          description: "Real-time access to Department of Rural Development data.",
-          icon: Database
+          name: "Document Authentication",
+          description: "Advanced document authentication to detect fraud and forgeries.",
+          icon: Shield
         },
         {
-          name: "Monthly Updates",
-          description: "Database updated monthly from official sources.",
+          name: "Real-time Verification",
+          description: "Instant verification results with real-time database connectivity.",
+          icon: Clock
+        },
+        {
+          name: "Compliance Reporting",
+          description: "Detailed verification reports for compliance and audit purposes.",
           icon: CheckCircle
+        }
+      ]
+    },
+    vehicle: {
+      title: "Vehicle Search & Verification",
+      description: "Comprehensive vehicle registration and ownership verification services.",
+      icon: Search,
+      items: [
+        {
+          name: "Vehicle Registration Check",
+          description: "Verify vehicle registration details against official transport databases.",
+          icon: FileText
+        },
+        {
+          name: "Ownership Verification",
+          description: "Confirm current and historical vehicle ownership information.",
+          icon: Users
+        },
+        {
+          name: "Finance & Encumbrance Check",
+          description: "Check for outstanding finance agreements and legal encumbrances.",
+          icon: Shield
+        },
+        {
+          name: "Vehicle History Report",
+          description: "Comprehensive vehicle history including accidents, theft, and maintenance records.",
+          icon: Database
         }
       ]
     }
@@ -251,10 +236,10 @@ const Services = () => {
               </div>
 
               <div className="p-8">
-                {/* Special section for Unclaimed Benefits Tracing */}
-                {activeTab === "tracing" && (
+                {/* Special section for Biometric Services */}
+                {activeTab === "biometrics" && (
                   <div className="mb-8 p-6 bg-[#F37021] bg-opacity-10 rounded-xl border border-[#F37021] border-opacity-20">
-                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4">Why Choose Our Tracing Services?</h3>
+                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4">Why Choose Our Biometric Services?</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                       <div className="flex items-start space-x-3">
                         <div className="w-8 h-8 bg-[#F37021] rounded-full flex items-center justify-center flex-shrink-0">
@@ -262,7 +247,7 @@ const Services = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold text-[#1A1A1A] mb-1">99.9% Accuracy</h4>
-                          <p className="text-sm text-gray-600">Our qualified agents do comprehensive quality checks on each confirmed trace.</p>
+                          <p className="text-sm text-gray-600">Advanced biometric algorithms ensure the highest accuracy in identity verification.</p>
                         </div>
                       </div>
                       <div className="flex items-start space-x-3">
@@ -270,8 +255,8 @@ const Services = () => {
                           <Clock size={16} className="text-white" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-[#1A1A1A] mb-1">60-Day Guarantee</h4>
-                          <p className="text-sm text-gray-600">Free re-trace within the 60-day guaranteed period.</p>
+                          <h4 className="font-semibold text-[#1A1A1A] mb-1">Real-time Processing</h4>
+                          <p className="text-sm text-gray-600">Instant biometric verification with real-time results and processing.</p>
                         </div>
                       </div>
                       <div className="flex items-start space-x-3">
@@ -279,8 +264,8 @@ const Services = () => {
                           <Users size={16} className="text-white" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-[#1A1A1A] mb-1">200+ Skilled Agents</h4>
-                          <p className="text-sm text-gray-600">Instant access to a national network of highly skilled and experienced trace agents.</p>
+                          <h4 className="font-semibold text-[#1A1A1A] mb-1">Multi-Modal Support</h4>
+                          <p className="text-sm text-gray-600">Support for facial recognition, fingerprints, and other biometric modalities.</p>
                         </div>
                       </div>
                       <div className="flex items-start space-x-3">
@@ -288,17 +273,18 @@ const Services = () => {
                           <Shield size={16} className="text-white" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-[#1A1A1A] mb-1">No Success, No Payment</h4>
-                          <p className="text-sm text-gray-600">You only pay when we successfully locate your beneficiaries.</p>
+                          <h4 className="font-semibold text-[#1A1A1A] mb-1">Enterprise Security</h4>
+                          <p className="text-sm text-gray-600">Bank-grade security and encryption for all biometric data processing.</p>
                         </div>
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
-                      <h4 className="font-semibold text-[#1A1A1A] mb-2">Our Key Tracing Focus:</h4>
+                      <h4 className="font-semibold text-[#1A1A1A] mb-2">Our Biometric Capabilities:</h4>
                       <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>Death Claims</li>
-                        <li>Untraceable matters</li>
-                        <li>Beneficiary data analysis</li>
+                        <li>Facial recognition and matching</li>
+                        <li>Fingerprint verification and analysis</li>
+                        <li>Live photo verification against databases</li>
+                        <li>Multi-factor biometric authentication</li>
                       </ul>
                     </div>
                   </div>
