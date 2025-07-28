@@ -55,7 +55,7 @@ const Contact = () => {
             email: '870a85001@smtp-brevo.com'
           },
           to: [{
-            email: 'info@alfrexcosa.co.za',
+            email: 'clientservices@alfrexcosa.co.za',
             name: 'Alfrexco Team'
           }],
           subject: 'New Contact Form Submission',
@@ -125,7 +125,7 @@ const Contact = () => {
 
       <div className="min-h-screen bg-white">
         {/* Hero Section with increased opacity */}
-        <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20 relative overflow-hidden">
+        <section className="bg-gradient-to-br from-[#2A2A2A] to-gray-900 text-white py-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
           <DataAnimation />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -279,7 +279,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-[#1A1A1A] mb-1">Email</h3>
-                      <p className="text-gray-600">info@alfrexcosa.co.za</p>
+                      <p className="text-gray-600">clientservices@alfrexcosa.co.za</p>
                     </div>
                   </div>
 
@@ -298,13 +298,28 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <MapPin className="w-12 h-12 mx-auto mb-2" />
-                    <p>Interactive Map</p>
-                    <p className="text-sm">Monument Office Park, Pretoria</p>
+                {/* Interactive Map */}
+                <div className="rounded-lg overflow-hidden" style={{maxWidth: '100%', width: '500px', height: '250px'}}>
+                  <div id="embed-map-canvas" style={{height: '100%', width: '100%', maxWidth: '100%'}}>
+                    <iframe 
+                      style={{height: '100%', width: '100%', border: '0'}} 
+                       
+                      src="https://www.google.com/maps/embed/v1/place?q=ekhaya+search&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                      title="Alfrexco Office Location"
+                    />
                   </div>
+                  <a 
+                    className="embed-map-html" 
+                    rel="nofollow" 
+                    href="https://www.bootstrapskins.com/themes" 
+                    id="authmaps-data" 
+                    style={{display: 'none'}}
+                  >
+                    premium bootstrap themes
+                  </a>
+                  <style dangerouslySetInnerHTML={{
+                    __html: `#embed-map-canvas img{max-width:none!important;background:none!important;font-size: inherit;font-weight:inherit;}`
+                  }} />
                 </div>
               </div>
             </div>

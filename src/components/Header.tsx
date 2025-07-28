@@ -29,7 +29,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/alfrexco_mini.png" 
               alt="Alfrexco SA" 
-              className="h-10 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 

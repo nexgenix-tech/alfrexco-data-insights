@@ -17,7 +17,7 @@ const TermsOfService = () => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-[#1A1A1A] mb-4">Terms of Service</h1>
+          <h1 className="text-4xl font-bold text-[#2A2A2A] mb-4">Terms of Service</h1>
           <p className="text-xl text-gray-600">
             Effective Date: January 1, 2025 | Last Updated: January 27, 2025
           </p>

@@ -45,7 +45,7 @@ const AppContent = () => {
         </Routes>
       </main>
       <Footer />
-      <StickyContactButton />
+      {/* <StickyContactButton /> */}
     </div>
   );
 };

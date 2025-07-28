@@ -3,6 +3,7 @@ import { Shield, Users, Award, Target, Eye, Heart } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
 import TeamCard from "../components/TeamCard";
 import { Helmet } from "react-helmet-async";
+import { team } from "@/lib/team-data";
 
 const About = () => {
   return (
@@ -20,7 +21,7 @@ const About = () => {
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#1A1A1A] to-gray-900 text-white py-20 relative overflow-hidden">
+        <section className="bg-gradient-to-br from-[#2A2A2A] to-gray-900 text-white py-20 relative overflow-hidden">
           <DataAnimation />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl">
@@ -140,27 +141,17 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <TeamCard
-                name="Linda Banda"
-                title="Managing Director"
-                description="Strategic leadership and business development expertise, driving Alfrexco's vision and growth initiatives."
-                linkedinUrl="https://linkedin.com/in/linda-banda"
-                initials="LB"
-              />
-              <TeamCard
-                name="Sphamandla Banda"
-                title="Chief Executive Officer"
-                description="Innovative technology leadership and operational excellence, steering the company's technical direction."
-                linkedinUrl="https://linkedin.com/in/sphamandla-banda"
-                initials="SB"
-              />
-              <TeamCard
-                name="Sabelo Mzimela"
-                title="Business Development Manager"
-                description="Building strategic partnerships and expanding market reach across South Africa's data landscape."
-                linkedinUrl="https://linkedin.com/in/sabelo-mzimela"
-                initials="SM"
-              />
+              {team.map((member) => (
+                <TeamCard
+                  key={member.name}
+                  name={member.name}
+                  title={member.title}
+                  description={member.description}
+                  linkedinUrl={member.linkedinUrl}
+                  initials={member.initials}
+                  avatar={member.avatar}
+                />
+              ))}
             </div>
           </div>
         </section>

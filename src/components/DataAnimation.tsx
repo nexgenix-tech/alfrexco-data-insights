@@ -82,9 +82,9 @@ const DataAnimation = () => {
       
       // Draw floating data elements
       ctx.font = '12px Inter';
-      ctx.fillStyle = 'rgba(243, 112, 33, 0.3)';
+      ctx.fillStyle = 'rgba(243, 112, 33, 0.6)';
       
-      const dataTexts = ['ID: 123456', 'VERIFIED', 'DATA SYNC', '99.9%', 'SECURE'];
+      const dataTexts = ['ID: 123456', 'VERIFIED', 'DATA SYNC', '99.9%', 'SECURE', 'BIOMETRICS'];
       dataTexts.forEach((text, i) => {
         const x = (canvas.width / dataTexts.length) * i + Math.sin(Date.now() * 0.001 + i) * 20;
         const y = 50 + Math.cos(Date.now() * 0.001 + i) * 10;

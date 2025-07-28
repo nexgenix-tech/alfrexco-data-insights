@@ -51,7 +51,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#1A1A1A] text-white">
+    <footer className="bg-[#1A1A1A] text-white mt-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -71,7 +71,7 @@ const Footer = () => {
                 <span className="font-medium">Phone:</span> +27 10 023 0576
               </p>
               <p className="text-sm text-gray-300">
-                <span className="font-medium">Email:</span> info@alfrexcosa.co.za
+                <span className="font-medium">Email:</span> clientservices@alfrexcosa.co.za
               </p>
               <p className="text-sm text-gray-300">
                 <span className="font-medium">Address:</span> Suite 205, Block 2<br />
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div>
+          <div id="newsletter">
             <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
             <p className="text-gray-300 text-sm mb-4">
               Subscribe to our newsletter for the latest industry insights.
