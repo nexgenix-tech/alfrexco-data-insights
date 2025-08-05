@@ -1,35 +1,63 @@
-import { Shield, Users, Database, CheckCircle, Phone, Mail, MapPin } from "lucide-react";
+import { Shield, Users, Database, CheckCircle, Phone, Mail, MapPin, ArrowRight, Star } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
 import { Helmet } from "react-helmet-async";
 
 const Partners = () => {
-  const operationalPartners = [
+  const partners = [
     {
       name: "Ideco",
-      logo: "/lovable-uploads/a2ca51c7-0054-4e29-bf3c-f05172a8337a.png",
+      logo: "/partners/ideco.png",
       type: "Smart Identification Platform",
-      description: "Leading smart identification and verification solutions provider."
+      description: "Leading smart identification and verification solutions provider.",
+      category: "Technology",
+      featured: true
+    },
+    {
+      name: "Axon Wireless",
+      logo: "https://www.axonwireless.com/wp-content/uploads/2022/09/Axon-Logo_colour-2.png",
+      type: "Biometric Solutions",
+      description: "Advanced wireless biometric technology solutions for seamless identity verification.",
+      category: "Technology",
+      featured: false
     },
     {
       name: "Uqudo",
-      logo: "/lovable-uploads/uqudo.png",
+      logo: "/partners/uqudo.png",
       type: "Smart Digital Onboarding Platform",
-      description: "Innovative digital identity company in the Middle East and Africa."
-    }
-  ];
-
-  const strategicPartners = [
-    {
-      name: "Tech 5",
-      logo: "/lovable-uploads/a71b2e11-5e3f-43bf-a356-268b0782e1f9.png",
-      type: "Biometrics / ID Management Company", 
-      description: "Advanced biometric identification and management technologies."
+      description: "Innovative digital identity company in the Middle East and Africa.",
+      category: "Platform",
+      featured: true
     },
     {
       name: "Ndende Technologies",
-      logo: "/lovable-uploads/abb278b3-f8d1-4372-b518-3fd2bc88b3ec.png",
+      logo: "/partners/ndende.png",
       type: "Biometrics / Security Company",
-      description: "Comprehensive security and biometric solutions provider."
+      description: "Comprehensive security and biometric solutions provider.",
+      category: "Security",
+      featured: false
+    }
+  ];
+
+  const partnershipValues = [
+    {
+      icon: Database,
+      title: "Advanced Technology",
+      description: "Access to cutting-edge biometric and verification technologies through our technology partners."
+    },
+    {
+      icon: Shield,
+      title: "Enhanced Security",
+      description: "Multi-layered security approaches combining our partners' expertise with our data solutions."
+    },
+    {
+      icon: Users,
+      title: "Global Reach",
+      description: "Expanding our service capabilities across different markets and regions through strategic alliances."
+    },
+    {
+      icon: CheckCircle,
+      title: "Comprehensive Solutions",
+      description: "End-to-end verification and data management solutions through strategic partnerships."
     }
   ];
 
@@ -37,7 +65,7 @@ const Partners = () => {
     <>
       <Helmet>
         <title>Our Partners - Alfrexco SA</title>
-        <meta name="description" content="Discover Alfrexco SA's strategic and operational partners. Working together with industry leaders like Ideco, Tech 5, and Ndende Technologies to bring you quality data solutions." />
+        <meta name="description" content="Discover Alfrexco SA's strategic partners. Working together with industry leaders like Ideco, Axon Wireless, Uqudo, and Ndende Technologies to bring you quality data solutions." />
         <meta name="keywords" content="Alfrexco SA partners, strategic partnerships, data verification partners, biometric solutions, identity verification" />
         <meta property="og:title" content="Our Partners - Alfrexco SA" />
         <meta property="og:description" content="Working together with industry leaders to bring you quality, tailor-made data solutions through strategic partnerships." />
@@ -48,147 +76,184 @@ const Partners = () => {
       
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#2A2A2A] to-gray-700 text-white py-20 relative overflow-hidden">
+        <section className="bg-gradient-to-br from-[#2A2A2A] via-gray-800 to-[#1A1A1A] text-white py-24 relative overflow-hidden">
           <DataAnimation />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
-              <h1 className="text-5xl font-bold mb-6">
-                Our <span className="text-[#F37021]">Partners</span>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center max-w-4xl mx-auto">
+              <div className="inline-flex items-center bg-[#F37021] bg-opacity-20 rounded-full px-6 py-2 mb-6">
+                <Users className="w-5 h-5 text-[#F37021] mr-2" />
+                <span className="text-[#F37021] font-medium">Trusted Partnerships</span>
+              </div>
+              <h1 className="text-6xl font-bold mb-6">
+                Our Strategic <span className="text-[#F37021]">Partners</span>
               </h1>
-              <p className="text-xl text-gray-300 leading-relaxed">
-                Working together to bring you quality, tailor-made data solutions through 
-                strategic partnerships with industry leaders.
+              <p className="text-xl text-gray-300 leading-relaxed mb-8">
+                Collaborating with industry leaders to deliver innovative, secure, and 
+                comprehensive data verification solutions across global markets.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Operational Partners */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-[#1A1A1A] mb-4">
-                Operational Partners
-              </h2>
-              <p className="text-xl text-gray-600">
-                Trusted technology partners powering our verification solutions
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {operationalPartners.map((partner, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition-shadow duration-300">
-                  <div className="mb-6">
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name}
-                      className="h-16 w-auto mx-auto"
-                    />
-                  </div>
-                  <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">{partner.name}</h3>
-                  <p className="text-[#F37021] font-medium mb-4">{partner.type}</p>
-                  <p className="text-gray-600">{partner.description}</p>
+              <div className="flex items-center justify-center space-x-8 text-sm text-gray-400">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-[#F37021] rounded-full mr-2"></div>
+                  <span>4 Strategic Partners</span>
                 </div>
-              ))}
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-[#F37021] rounded-full mr-2"></div>
+                  <span>Global Coverage</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-[#F37021] rounded-full mr-2"></div>
+                  <span>Cutting-edge Technology</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Strategic Partners */}
+        {/* Partners Grid */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-[#1A1A1A] mb-4">
-                Strategic Partners
+                Trusted by Industry Leaders
               </h2>
-              <p className="text-xl text-gray-600">
-                Long-term partnerships driving innovation in data verification
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Our partnerships combine expertise, innovation, and reliability to deliver 
+                exceptional data verification and security solutions.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {strategicPartners.map((partner, index) => (
-                <div key={index} className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <div className="mb-6">
-                    <div className="inline-block p-4 rounded-lg bg-gray-50">
-                      <img 
-                        src={partner.logo} 
-                        alt={partner.name}
-                        className="h-16 w-auto"
-                      />
+              {partners.map((partner, index) => (
+                <div 
+                  key={index} 
+                  className={`group relative bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 border-2 hover:border-[#F37021] hover:border-opacity-30 ${
+                    partner.featured ? 'ring-2 ring-[#F37021] ring-opacity-20' : ''
+                  }`}
+                >
+                  {partner.featured && (
+                    <div className="absolute -top-3 left-6">
+                      <div className="bg-[#F37021] text-white px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                        <Star className="w-3 h-3 mr-1" />
+                        Featured Partner
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="flex items-start space-x-6">
+                    <div className="flex-shrink-0">
+                      <div className="w-auto h-20 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-[#F37021] group-hover:bg-opacity-10 transition-colors duration-300">
+                        <img 
+                          src={partner.logo} 
+                          alt={partner.name}
+                          className="h-12 w-auto"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="flex-grow">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-2xl font-bold text-[#1A1A1A] group-hover:text-[#F37021] transition-colors duration-300">
+                          {partner.name}
+                        </h3>
+                        <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                          {partner.category}
+                        </span>
+                      </div>
+                      
+                      <p className="text-[#F37021] font-semibold mb-3 text-lg">
+                        {partner.type}
+                      </p>
+                      
+                      <p className="text-gray-600 leading-relaxed mb-4">
+                        {partner.description}
+                      </p>
+                      
+                      
                     </div>
                   </div>
-                  <h3 className="text-2xl font-semibold text-[#1A1A1A] mb-2">{partner.name}</h3>
-                  <p className="text-[#F37021] font-medium mb-4">{partner.type}</p>
-                  <p className="text-gray-600">{partner.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Partnership Benefits */}
-        <section className="py-20 bg-[#F37021] text-white">
+        {/* Partnership Values */}
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Partnership Benefits</h2>
-              <p className="text-xl text-orange-100">
-                How our partnerships enhance your experience
+              <h2 className="text-4xl font-bold text-[#1A1A1A] mb-4">
+                Partnership <span className="text-[#F37021]">Advantages</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Our collaborative approach delivers enhanced value through combined expertise and innovation
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Database className="w-8 h-8" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {partnershipValues.map((value, index) => (
+                <div key={index} className="text-center group">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#F37021] to-[#E5651C] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <value.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4 group-hover:text-[#F37021] transition-colors duration-300">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-4">Advanced Technology</h3>
-                <p className="text-orange-100">
-                  Access to cutting-edge biometric and verification technologies 
-                  through our technology partners.
-                </p>
-              </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Shield className="w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Enhanced Security</h3>
-                <p className="text-orange-100">
-                  Multi-layered security approaches combining our partners' 
-                  expertise with our data solutions.
-                </p>
+        {/* Stats Section */}
+        <section className="py-16 bg-[#1A1A1A] text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-bold text-[#F37021] mb-2">4+</div>
+                <div className="text-gray-300">Strategic Partners</div>
               </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">Comprehensive Solutions</h3>
-                <p className="text-orange-100">
-                  End-to-end verification and data management solutions 
-                  through strategic partnerships.
-                </p>
+              
+              <div>
+                <div className="text-4xl font-bold text-[#F37021] mb-2">99.9%</div>
+                <div className="text-gray-300">System Reliability</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-[#F37021] mb-2">24/7</div>
+                <div className="text-gray-300">Support Coverage</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-[#1A1A1A] text-white">
+        <section className="py-20 bg-gradient-to-r from-[#F37021] to-[#E5651C] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl font-bold mb-6">
-              Interested in Partnership?
+              Ready to Partner with Us?
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Contact us to explore partnership opportunities and how we can work together.
+            <p className="text-xl text-orange-100 mb-8 leading-relaxed">
+              Join our network of trusted partners and explore how we can collaborate 
+              to deliver exceptional data verification solutions together.
             </p>
-            <a
-              href="/contact"
-              className="bg-[#F37021] text-white px-8 py-4 rounded-md text-lg font-medium hover:bg-[#E5651C] transition-colors duration-200 inline-block"
-            >
-              Contact Us
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="bg-white text-[#F37021] px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors duration-200 inline-flex items-center justify-center"
+              >
+                <Mail className="w-5 h-5 mr-2" />
+                Contact Us
+              </a>
+              <a
+                href="/about"
+                className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-[#F37021] transition-colors duration-200 inline-flex items-center justify-center"
+              >
+                <Users className="w-5 h-5 mr-2" />
+                Learn About Us
+              </a>
+            </div>
           </div>
         </section>
       </div>
