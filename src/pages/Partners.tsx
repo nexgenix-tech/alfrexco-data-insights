@@ -31,7 +31,7 @@ const Partners = () => {
     {
       name: "Ndende Technologies",
       logo: "/partners/ndende.png",
-      type: "Biometrics / Security Company",
+      type: "Biometrics Company",
       description: "Provides comprehensive security and biometric solutions.",
       category: "Security",
       featured: false
