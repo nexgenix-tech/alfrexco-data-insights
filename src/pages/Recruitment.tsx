@@ -17,6 +17,7 @@ const Recruitment = () => {
     motivation: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const brevo_api_key = import.meta.env.VITE_BREVO_API_KEY;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -35,7 +36,7 @@ const Recruitment = () => {
         method: 'POST',
         headers: {
           'accept': 'application/json',
-          'api-key': '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',
+          'api-key': brevo_api_key,
           'content-type': 'application/json'
         },
         body: JSON.stringify({
@@ -49,7 +50,7 @@ const Recruitment = () => {
             EXPERIENCE: formData.experience,
             MOTIVATION: formData.motivation
           },
-          listIds: [8] // Recruitment list
+          listIds: [11] // Recruitment list
         })
       });
 
@@ -58,13 +59,13 @@ const Recruitment = () => {
         method: 'POST',
         headers: {
           'accept': 'application/json',
-          'api-key': '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',
+          'api-key': brevo_api_key,
           'content-type': 'application/json'
         },
         body: JSON.stringify({
           sender: {
             name: "Alfrexco Website",
-            email: "noreply@alfrexcosa.co.za"
+            email: "clientservices@alfrexcosa.co.za"
           },
           to: [{
             email: "info@alfrexcosa.co.za",

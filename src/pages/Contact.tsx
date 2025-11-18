@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const { toast } = useToast();
+  const brevo_api_key = import.meta.env.VITE_BREVO_API_KEY;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,7 +28,7 @@ const Contact = () => {
         method: 'POST',
         headers: {
           'accept': 'application/json',
-          'api-key': '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',
+          'api-key': brevo_api_key,
           'content-type': 'application/json'
         },
         body: JSON.stringify({
@@ -37,7 +38,7 @@ const Contact = () => {
             COMPANY: formData.company,
             SMS: formData.phone
           },
-          listIds: [7] // Alfrexco Leads list
+          listIds: [10] // Alfrexco Leads list
         })
       });
 
@@ -46,13 +47,13 @@ const Contact = () => {
         method: 'POST',
         headers: {
           'accept': 'application/json',
-          'api-key': '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',
+          'api-key': brevo_api_key,
           'content-type': 'application/json'
         },
         body: JSON.stringify({
           sender: {
             name: 'Alfrexco Website',
-            email: '870a85001@smtp-brevo.com'
+            email: 'clientservices@alfrexcosa.co.za'
           },
           to: [{
             email: 'clientservices@alfrexcosa.co.za',

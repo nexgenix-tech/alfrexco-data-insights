@@ -8,7 +8,7 @@ const Partners = () => {
       name: "Ideco",
       logo: "/partners/ideco.png",
       type: "Smart Identification Platform",
-      description: "Leading smart identification and verification solutions provider.",
+      description: "Provides smart identification and verification solutions.",
       category: "Technology",
       featured: true
     },
@@ -16,7 +16,7 @@ const Partners = () => {
       name: "Axon Wireless",
       logo: "https://www.axonwireless.com/wp-content/uploads/2022/09/Axon-Logo_colour-2.png",
       type: "Biometric Solutions",
-      description: "Advanced wireless biometric technology solutions for seamless identity verification.",
+      description: "Provides advanced wireless biometric technology solutions.",
       category: "Technology",
       featured: false
     },
@@ -24,7 +24,7 @@ const Partners = () => {
       name: "Uqudo",
       logo: "/partners/uqudo.png",
       type: "Smart Digital Onboarding Platform",
-      description: "Innovative digital identity company in the Middle East and Africa.",
+      description: "Provides innovative digital identity solutions for the Middle East and Africa.",
       category: "Platform",
       featured: true
     },
@@ -32,8 +32,24 @@ const Partners = () => {
       name: "Ndende Technologies",
       logo: "/partners/ndende.png",
       type: "Biometrics / Security Company",
-      description: "Comprehensive security and biometric solutions provider.",
+      description: "Provides comprehensive security and biometric solutions.",
       category: "Security",
+      featured: false
+    },
+    {
+      name: "iFacts",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkf0eRy17tT1y6JzSbrD3Hglnwee1ln2loIQ&s",
+      type: "Employee Screening & Vetting Services",
+      description: "Provides employee screening and vetting services for informed hiring decisions.",
+      category: "Vetting",
+      featured: true
+    },
+    {
+      name: "V-Reports",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBfU33_GTUK_cHRZ94UqQt3M8Vp9RTmA9ujw&s",
+      type: "Employee Screening & Vetting Services",
+      description: "Provides comprehensive talent and risk management solutions.",
+      category: "Vetting",
       featured: false
     }
   ];

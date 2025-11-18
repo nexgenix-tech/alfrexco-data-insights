@@ -18,7 +18,7 @@ const TeamCard = ({ name, title, description, linkedinUrl, initials, avatar }: T
   return (
     <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center group">
       <div className="mb-6">
-        <div className="w-24 h-24 rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden relative">
+        <div className="w-60 h-60 rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden relative">
           {hasValidAvatar ? (
             <img 
               src={avatar} 
@@ -35,7 +35,7 @@ const TeamCard = ({ name, title, description, linkedinUrl, initials, avatar }: T
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-[#F37021] to-[#E5651C] rounded-full flex items-center justify-center">
-              <span className="text-2xl font-bold text-white">{initials}</span>
+              <span className="text-6xl font-bold text-white">{initials}</span>
             </div>
           )}
         </div>

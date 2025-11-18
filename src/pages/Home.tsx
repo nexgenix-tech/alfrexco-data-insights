@@ -52,7 +52,7 @@ const Home = () => {
                 <div className="bg-gradient-to-br from-[#F37021] to-[#E5651C] rounded-lg p-8 transform rotate-3 shadow-2xl">
                   <div className="bg-white rounded-lg p-6 transform -rotate-3">
                     <img 
-                      src="/lovable-uploads/4cd33516-ac28-48b2-a6b6-960f47832266.png" 
+                      src="/alfrexco.png" 
                       alt="Alfrexco SA Logo" 
                       className="w-full h-auto"
                     />

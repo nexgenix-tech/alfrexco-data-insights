@@ -8,6 +8,7 @@ const Footer = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const brevo_api_key = import.meta.env.VITE_BREVO_API_KEY;
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,12 +22,12 @@ const Footer = () => {
         method: 'POST',
         headers: {
           'accept': 'application/json',
-          'api-key': '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',
+          'api-key': brevo_api_key,
           'content-type': 'application/json'
         },
         body: JSON.stringify({
           email: email,
-          listIds: [6] // Alfrexco Newsletter list
+          listIds: [12] // Alfrexco Newsletter list
         })
       });
 
@@ -56,19 +57,22 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <img 
-              src="/lovable-uploads/alfrexco_mini.png" 
+            <div className="h-28 w-28 bg-white rounded-lg shadow-lg mb-4">
+<img 
+              src="/alfrexco.png" 
               alt="Alfrexco SA" 
-              className="h-16 w-auto mb-4"
+              className="h-28 w-auto  p-2"
               
             />
+            </div>
+            
             <p className="text-gray-300 mb-4 max-w-md">
               Leading South African data and identity verification company providing 
               comprehensive data solutions for businesses across multiple industries.
             </p>
             <div className="space-y-2">
               <p className="text-sm text-gray-300">
-                <span className="font-medium">Phone:</span> +27 10 023 0576
+                <span className="font-medium">Phone:</span> +27 10 017 8760
               </p>
               <p className="text-sm text-gray-300">
                 <span className="font-medium">Email:</span> clientservices@alfrexcosa.co.za

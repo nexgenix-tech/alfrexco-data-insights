@@ -7,7 +7,7 @@ export const team: TeamMember[] = [
         description: "Strategic leadership and business development expertise, driving Alfrexco's vision and growth initiatives.",
         linkedinUrl: "https://www.linkedin.com/in/linda-banda-2812a729/",
         initials: "LB",
-        avatar: "/team/linda.jpg"
+        avatar: "/team/linda_banda.jpg"
     },
     {
         name: "Sphamandla Banda",
