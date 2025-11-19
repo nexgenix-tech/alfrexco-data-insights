@@ -6,55 +6,13 @@ import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
   const { toast } = useToast();
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const brevo_api_key = import.meta.env.VITE_BREVO_API_KEY;
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-
-    setIsSubmitting(true);
-
-    try {
-      // Add to Brevo newsletter list (Alfrexco Newsletter - List ID #6)
-      const response = await fetch('https://api.brevo.com/v3/contacts', {
-        method: 'POST',
-        headers: {
-          'accept': 'application/json',
-          'api-key': brevo_api_key,
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          listIds: [12] // Alfrexco Newsletter list
-        })
-      });
-
-      console.log('Newsletter subscription:', response.ok);
-
-      toast({
-        title: "Successfully Subscribed!",
-        description: "Thank you for subscribing to our newsletter.",
-      });
-
-      setEmail("");
-    } catch (error) {
-      console.error('Error subscribing to newsletter:', error);
-      toast({
-        title: "Error",
-        description: "There was an error subscribing. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  
+  
 
   return (
     <footer className="bg-[#1A1A1A] text-white mt-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
             <div className="h-28 w-28 bg-white rounded-lg shadow-lg mb-4">
@@ -99,30 +57,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div id="newsletter">
-            <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
-            <p className="text-gray-300 text-sm mb-4">
-              Subscribe to our newsletter for the latest industry insights.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-              <input
-                type="email"
-                placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-[#F37021]"
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-[#F37021] text-white px-4 py-2 rounded-md hover:bg-[#E5651C] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-              </button>
-            </form>
-          </div>
+          
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">

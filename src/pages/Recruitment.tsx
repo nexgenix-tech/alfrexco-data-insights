@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Users, Star, TrendingUp, Award, Send } from "lucide-react";
@@ -6,6 +7,8 @@ import DataAnimation from "../components/DataAnimation";
 
 const Recruitment = () => {
   const { toast } = useToast();
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,8 +19,7 @@ const Recruitment = () => {
     experience: "",
     motivation: ""
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const brevo_api_key = import.meta.env.VITE_BREVO_API_KEY;
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -26,73 +28,40 @@ const Recruitment = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setIsLoading(true);
 
     try {
-      // Add to Brevo recruitment list
-      const contactResponse = await fetch('https://api.brevo.com/v3/contacts', {
+      console.log('Submitting recruitment application:', formData);
+
+      // Save to Brevo recruitment list
+      const saveResponse = await fetch('/api/save-to-recruitment', {
         method: 'POST',
-        headers: {
-          'accept': 'application/json',
-          'api-key': brevo_api_key,
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          attributes: {
-            FIRSTNAME: formData.firstName,
-            LASTNAME: formData.lastName,
-            SMS: formData.phone,
-            LINKEDIN: formData.linkedin,
-            POTENTIAL_ROLE: formData.potentialRole,
-            EXPERIENCE: formData.experience,
-            MOTIVATION: formData.motivation
-          },
-          listIds: [11] // Recruitment list
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
+      
+      if (!saveResponse.ok) {
+        const errorText = await saveResponse.text();
+        throw new Error(`Failed to save to Brevo: ${saveResponse.statusText} - ${errorText}`);
+      }
 
       // Send notification email to HR
-      const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+      const emailResponse = await fetch('/api/send-recruitment-email', {
         method: 'POST',
-        headers: {
-          'accept': 'application/json',
-          'api-key': brevo_api_key,
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          sender: {
-            name: "Alfrexco Website",
-            email: "clientservices@alfrexcosa.co.za"
-          },
-          to: [{
-            email: "info@alfrexcosa.co.za",
-            name: "Alfrexco HR Team"
-          }],
-          subject: "New Recruitment Application",
-          htmlContent: `
-            <h2>New Recruitment Application</h2>
-            <p><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Phone:</strong> ${formData.phone}</p>
-            <p><strong>LinkedIn:</strong> ${formData.linkedin}</p>
-            <p><strong>Potential Role:</strong> ${formData.potentialRole}</p>
-            <p><strong>Experience Level:</strong> ${formData.experience}</p>
-            <p><strong>Motivation:</strong></p>
-            <p>${formData.motivation}</p>
-          `
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
+      
+      if (!emailResponse.ok) {
+        console.warn('Email sending failed but application saved:', emailResponse.statusText);
+        setToastMessage("Application saved successfully! However, email notification failed. Our team will review your application soon.");
+      } else {
+        setToastMessage("Thank you for your application! We'll be in touch soon.");
+      }
 
-      console.log('Recruitment form submitted:', contactResponse.ok, emailResponse.ok);
-
-      toast({
-        title: "Application Submitted!",
-        description: "Thank you for your interest. We'll be in touch soon.",
-      });
-
+      // Reset form data state
       setFormData({
         firstName: "",
         lastName: "",
@@ -103,15 +72,30 @@ const Recruitment = () => {
         experience: "",
         motivation: ""
       });
-    } catch (error) {
-      console.error('Error submitting application:', error);
+      
+      // Reset the actual form
+      if (e.currentTarget) {
+        e.currentTarget.reset();
+      }
+
+      // Also trigger the toast hook if you prefer
+      toast({
+        title: "Application Submitted!",
+        description: "Thank you for your interest. We'll be in touch soon.",
+      });
+      
+    } catch (error: any) {
+      console.error('Submission failed:', error);
+      setToastMessage(`Failed to submit application. Please try again. Error: ${error.message}`);
+      
       toast({
         title: "Error",
         description: "There was an error submitting your application. Please try again.",
         variant: "destructive",
       });
     } finally {
-      setIsSubmitting(false);
+      setIsLoading(false);
+      setTimeout(() => setToastMessage(null), 5000);
     }
   };
 
@@ -355,11 +339,11 @@ const Recruitment = () => {
                 <div className="text-center">
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isLoading}
                     className="bg-[#F37021] text-white px-8 py-4 rounded-md text-lg font-medium hover:bg-[#E5651C] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center space-x-2"
                   >
                     <Send className="w-5 h-5" />
-                    <span>{isSubmitting ? 'Submitting...' : 'Submit Application'}</span>
+                    <span>{isLoading ? 'Submitting...' : 'Submit Application'}</span>
                   </button>
                 </div>
               </form>

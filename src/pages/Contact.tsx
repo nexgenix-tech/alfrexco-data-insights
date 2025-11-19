@@ -1,4 +1,4 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import DataAnimation from "../components/DataAnimation";
@@ -7,107 +7,91 @@ import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const { toast } = useToast();
-  const brevo_api_key = import.meta.env.VITE_BREVO_API_KEY;
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
     phone: "",
     message: "",
-    requestAppointment: false
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    const formDataObj = new FormData(event.currentTarget);
+    
+    // Split the full name into first and last name for Brevo
+    const fullName = formDataObj.get("name") as string;
+    const nameParts = fullName.trim().split(" ");
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
+
+    const data = {
+      email: formDataObj.get("email"),
+      firstName: firstName,
+      lastName: lastName,
+      company: formDataObj.get("company"),
+      phone: formDataObj.get("phone"),
+      message: formDataObj.get("message"),
+    };
 
     try {
-      // Add contact to Brevo list (Alfrexco Leads - List ID #7)
-      const contactResponse = await fetch('https://api.brevo.com/v3/contacts', {
+      console.log('Submitting data:', data);
+      const saveResponse = await fetch('/api/save-to-contact', {
         method: 'POST',
-        headers: {
-          'accept': 'application/json',
-          'api-key': brevo_api_key,
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          attributes: {
-            FIRSTNAME: formData.name,
-            COMPANY: formData.company,
-            SMS: formData.phone
-          },
-          listIds: [10] // Alfrexco Leads list
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       });
+      
+      if (!saveResponse.ok) {
+        const errorText = await saveResponse.text();
+        throw new Error(`Failed to save to Brevo: ${saveResponse.statusText} - ${errorText}`);
+      }
 
-      // Send email notification using Brevo SMTP
-      const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+      const emailResponse = await fetch('/api/send-contact-email', {
         method: 'POST',
-        headers: {
-          'accept': 'application/json',
-          'api-key': brevo_api_key,
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          sender: {
-            name: 'Alfrexco Website',
-            email: 'clientservices@alfrexcosa.co.za'
-          },
-          to: [{
-            email: 'clientservices@alfrexcosa.co.za',
-            name: 'Alfrexco Team'
-          }],
-          subject: 'New Contact Form Submission',
-          htmlContent: `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${formData.name}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Company:</strong> ${formData.company || 'Not provided'}</p>
-            <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
-            <p><strong>Request Appointment:</strong> ${formData.requestAppointment ? 'Yes' : 'No'}</p>
-            <p><strong>Message:</strong></p>
-            <p>${formData.message}</p>
-          `
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       });
-
-      console.log('Contact added to Brevo:', contactResponse.ok);
-      console.log('Email sent:', emailResponse.ok);
-
-      toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for your message. We'll get back to you soon!",
-      });
-
-      // Reset form
+      
+      if (!emailResponse.ok) {
+        console.warn('Email sending failed but contact saved:', emailResponse.statusText);
+        setToastMessage("Contact saved successfully! However, email sending failed. Our team will follow up soon.");
+      } else {
+        setToastMessage("Thank you! Our team will be in touch soon.");
+      }
+      
+      // Reset form data state
       setFormData({
         name: "",
         email: "",
         company: "",
         phone: "",
         message: "",
-        requestAppointment: false
       });
-
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        title: "Error",
-        description: "There was an error sending your message. Please try again.",
-        variant: "destructive",
-      });
+      
+      // Reset the actual form
+      if (event.currentTarget) {
+        event.currentTarget.reset();
+      }
+    } catch (error: any) {
+      console.error('Submission failed:', error);
+      setToastMessage(`Failed to submit. Please try again. Error: ${error.message}`);
     } finally {
-      setIsSubmitting(false);
+      setIsLoading(false);
+      setTimeout(() => setToastMessage(null), 5000);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+      [name]: value
     }));
   };
 
@@ -142,6 +126,13 @@ const Contact = () => {
           </div>
         </section>
 
+        {/* Toast Message */}
+        {toastMessage && (
+          <div className="fixed top-4 right-4 z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-w-md">
+            <p className="text-sm text-gray-800">{toastMessage}</p>
+          </div>
+        )}
+
         {/* Contact Form & Info */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -153,7 +144,7 @@ const Contact = () => {
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
+                    <div className="md:col-span-2">
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                         Full Name *
                       </label>
@@ -227,26 +218,12 @@ const Contact = () => {
                     ></textarea>
                   </div>
 
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="requestAppointment"
-                      name="requestAppointment"
-                      checked={formData.requestAppointment}
-                      onChange={handleChange}
-                      className="h-4 w-4 text-[#F37021] focus:ring-[#F37021] border-gray-300 rounded"
-                    />
-                    <label htmlFor="requestAppointment" className="ml-2 block text-sm text-gray-700">
-                      Request Appointment
-                    </label>
-                  </div>
-
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isLoading}
                     className="w-full bg-[#F37021] text-white px-6 py-3 rounded-md font-medium hover:bg-[#E5651C] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isLoading ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               </div>
@@ -270,7 +247,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-[#1A1A1A] mb-1">Phone</h3>
-                      <p className="text-gray-600">+27 10 023 0576</p>
+                      <p className="text-gray-600">+27 10 017 8760</p>
                     </div>
                   </div>
 
@@ -304,7 +281,6 @@ const Contact = () => {
                   <div id="embed-map-canvas" style={{height: '100%', width: '100%', maxWidth: '100%'}}>
                     <iframe 
                       style={{height: '100%', width: '100%', border: '0'}} 
-                       
                       src="https://www.google.com/maps/embed/v1/place?q=ekhaya+search&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
                       title="Alfrexco Office Location"
                     />
