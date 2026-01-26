@@ -30,7 +30,7 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
       'https://api.brevo.com/v3/smtp/email',
       {
         sender: { 
-          email: 'clientservices@ekhayasearch.co.za', 
+          email: 'noreply@alfrexcosa.co.za', 
           name: 'Alfrexco Website Enquiry' 
         },
         to: [
